@@ -1,0 +1,1293 @@
+/* ==========================================================================
+   PROJECT: Transforming Wireframes into Static Web Pages
+   FILE: styles.css
+   DESCRIPTION: Complete stylesheet handling:
+     1. Final Styled Static Webpage Mode (High-Fidelity UI)
+     2. Wireframe Blueprint Mode (Low-Fidelity Structural View)
+     3. Layout & Spacing Inspector Mode (Semantic Tags & CSS Specs)
+     4. Responsive Design across Desktop, Tablet, and Mobile
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Final Static Webpage Mode */
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-accent: #4f46e5;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-border: #e2e8f0;
+  --color-dark: #0f172a;
+  --color-success: #10b981;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing & Layout Tokens */
+  --container-width: 1180px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 40px -12px rgba(37, 99, 235, 0.15);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   1. Base Reset & Typography
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  width: 92%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.section-padding {
+  padding: 5rem 0;
+}
+
+.bg-alt {
+  background-color: var(--color-bg-alt);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: #eff6ff;
+  color: var(--color-primary);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   2. Interactive Top Mode Switcher Toolbar
+   ========================================================================== */
+.mode-toolbar {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid #1e293b;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-size: 0.85rem;
+}
+
+.toolbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.toolbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-success);
+  box-shadow: 0 0 8px var(--color-success);
+}
+
+.mode-switch-group {
+  display: flex;
+  gap: 0.4rem;
+  background: #1e293b;
+  padding: 0.25rem;
+  border-radius: 8px;
+}
+
+.mode-btn {
+  background: transparent;
+  color: #cbd5e1;
+  border: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.mode-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mode-btn.active {
+  background: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+}
+
+.mode-icon {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.toolbar-status {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.toolbar-status strong {
+  color: #38bdf8;
+}
+
+/* ==========================================================================
+   3. Header & Navigation
+   ========================================================================== */
+.site-header {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 45px;
+  z-index: 900;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.logo-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.logo-text span {
+  color: var(--color-primary);
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 1.75rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+.nav-cta {
+  background: #eff6ff;
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.nav-cta:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mobile-menu-toggle .bar {
+  width: 20px;
+  height: 2px;
+  background: var(--color-text);
+}
+
+/* ==========================================================================
+   4. Hero Section
+   ========================================================================== */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.badge {
+  display: inline-block;
+  background: #eff6ff;
+  color: var(--color-primary);
+  border: 1px solid #bfdbfe;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 4vw, 3.35rem);
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.08rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+  max-width: 60ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.metric-value {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.metric-label {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+/* Hero Visual Window Mockup */
+.preview-window {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.window-header {
+  background: #f1f5f9;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+
+.window-url {
+  margin-left: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  background: #ffffff;
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+}
+
+.window-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mini-layout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mini-logo {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--color-primary);
+}
+
+.mini-nav-pills {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.mini-nav-pills span {
+  font-size: 0.72rem;
+  background: #f1f5f9;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.mini-hero-box {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1rem;
+  align-items: center;
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.mini-image-placeholder {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  border-radius: 8px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.wf-only-label {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.styled-graphic {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.graphic-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.graphic-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.graphic-bars span {
+  display: block;
+  height: 6px;
+  width: 48px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 3px;
+}
+
+.graphic-bars span:last-child {
+  width: 30px;
+}
+
+.mini-text-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.line {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+}
+
+.line-lg {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.line-md,
+.line-sm {
+  color: var(--color-text-muted);
+}
+
+.mini-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+}
+
+.mini-card {
+  background: #f8fafc;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.65rem;
+  text-align: center;
+}
+
+.mini-card strong {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--color-primary);
+}
+
+.mini-card span {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   5. Common Section Headers & Feature Cards
+   ========================================================================== */
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3.25rem;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  font-weight: 800;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.01em;
+}
+
+.section-description {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.feature-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: #cbd5e1;
+}
+
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #eff6ff;
+  color: var(--color-primary);
+  font-weight: 800;
+  font-family: var(--font-mono);
+  display: grid;
+  place-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   6. Workflow Steps Section
+   ========================================================================== */
+.workflow-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.step-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.step-number {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.6rem;
+}
+
+.step-title {
+  font-size: 1.12rem;
+  margin-bottom: 0.65rem;
+}
+
+.step-text {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.step-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.step-tags li {
+  font-size: 0.75rem;
+  background: #f1f5f9;
+  color: var(--color-text-muted);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   7. Filterable UI Components Showcase
+   ========================================================================== */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  padding: 0.55rem 1.15rem;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.filter-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.comp-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.comp-card.hidden {
+  display: none;
+}
+
+.comp-preview {
+  background: #f1f5f9;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mock-grid-demo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.mock-grid-demo span {
+  background: #dbeafe;
+  color: var(--color-primary);
+  border: 1px solid #93c5fd;
+  padding: 0.6rem;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.mock-type-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.mock-type-demo .t-h1 {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.mock-type-demo .t-body {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.mock-nav-demo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: #ffffff;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  font-size: 0.8rem;
+}
+
+.mock-brand { font-weight: 700; }
+.mock-links { color: var(--color-text-muted); }
+.mock-btn {
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.mock-spacing-demo {
+  width: 100%;
+}
+
+.mock-outer-box {
+  border: 1px dashed var(--color-primary);
+  background: #eff6ff;
+  padding: 0.6rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--color-primary);
+}
+
+.mock-inner-box {
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  padding: 0.4rem;
+  margin-top: 0.35rem;
+  border-radius: 4px;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.mock-palette-demo {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.swatch {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.s-primary { background: #2563eb; }
+.s-accent { background: #4f46e5; }
+.s-dark { background: #0f172a; }
+.s-light { background: #f8fafc; border-color: #cbd5e1; }
+
+.demo-Interactive-btn {
+  background: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.demo-Interactive-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+.comp-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.comp-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 0.4rem;
+}
+
+.comp-body h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.comp-body p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.comp-code {
+  display: block;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.75rem;
+  overflow-x: auto;
+}
+
+/* ==========================================================================
+   8. Comparison Table Section
+   ========================================================================== */
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  text-align: left;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.92rem;
+}
+
+.comparison-table th {
+  background: #f8fafc;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.tech-pill {
+  display: inline-block;
+  background: #eff6ff;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+}
+
+/* ==========================================================================
+   9. Contact & Learning Outcomes Section
+   ========================================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contact-info .section-title {
+  text-align: left;
+}
+
+.contact-info p {
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.learning-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.learning-list li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.learning-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+.learning-list strong {
+  color: var(--color-text);
+}
+
+.contact-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.contact-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.form-subtext {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.15rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: var(--color-text);
+  background: #ffffff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-feedback {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+}
+
+.form-feedback.success {
+  padding: 0.75rem;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.form-feedback.error {
+  padding: 0.75rem;
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* ==========================================================================
+   10. Semantic Footer
+   ========================================================================== */
+.site-footer {
+  background: var(--color-dark);
+  color: #cbd5e1;
+  padding: 3rem 0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-logo .logo-text {
+  color: #ffffff;
+}
+
+.footer-brand p {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  max-width: 460px;
+}
+
+.footer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-pill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  border: 1px solid #334155;
+}
+
+.copyright {
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   11. MODE 1: WIREFRAME BLUEPRINT MODE (Low-Fidelity Structural View)
+   ========================================================================== */
+body.wireframe-mode {
+  font-family: var(--font-mono);
+  background-color: #f8fafc;
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: #1e293b;
+}
+
+body.wireframe-mode *:not(.mode-toolbar):not(.mode-toolbar *) {
+  font-family: var(--font-mono) !important;
+  box-shadow: none !important;
+  border-radius: 2px !important;
+}
+
+body.wireframe-mode .site-header,
+body.wireframe-mode .bg-alt,
+body.wireframe-mode .feature-card,
+body.wireframe-mode .step-card,
+body.wireframe-mode .comp-card,
+body.wireframe-mode .preview-window,
+body.wireframe-mode .contact-card,
+body.wireframe-mode .site-footer {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border: 2px dashed #64748b !important;
+}
+
+body.wireframe-mode .text-gradient {
+  background: none !important;
+  -webkit-text-fill-color: #1e293b !important;
+  text-decoration: underline;
+}
+
+body.wireframe-mode .btn-primary,
+body.wireframe-mode .btn-secondary,
+body.wireframe-mode .logo-box,
+body.wireframe-mode .card-icon,
+body.wireframe-mode .badge,
+body.wireframe-mode .tech-pill,
+body.wireframe-mode .filter-btn.active,
+body.wireframe-mode .demo-Interactive-btn {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  border: 2px solid #334155 !important;
+}
+
+/* Wireframe Cross-Hatched Image Box */
+body.wireframe-mode .mini-image-placeholder,
+body.wireframe-mode .comp-preview {
+  background: repeating-linear-gradient(
+    45deg,
+    #f1f5f9,
+    #f1f5f9 10px,
+    #e2e8f0 10px,
+    #e2e8f0 20px
+  ) !important;
+  border: 2px dashed #475569 !important;
+  color: #0f172a !important;
+}
+
+body.wireframe-mode .styled-graphic {
+  display: none !important;
+}
+
+body.wireframe-mode .wf-only-label {
+  display: block !important;
+  font-weight: 700;
+  background: #ffffff;
+  border: 1px solid #334155;
+}
+
+body.wireframe-mode .swatch {
+  background: #e2e8f0 !important;
+  border: 2px dashed #334155 !important;
+}
+
+/* ==========================================================================
+   12. MODE 2: LAYOUT & SPACING INSPECTOR MODE
+   ========================================================================== */
+body.inspect-mode [data-tag] {
+  outline: 2px dashed #2563eb;
+  outline-offset: -2px;
+  position: relative;
+}
+
+body.inspect-mode [data-tag]::before {
+  content: attr(data-tag) " " attr(data-spec);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #2563eb;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  z-index: 50;
+  pointer-events: none;
+  border-bottom-left-radius: 6px;
+}
+
+/* ==========================================================================
+   13. Responsive Breakpoints (Tablet & Mobile)
+   ========================================================================== */
+@media (max-width: 980px) {
+  .hero-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-grid,
+  .component-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .workflow-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .section-padding {
+    padding: 3.5rem 0;
+  }
+
+  .toolbar-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .mode-switch-group {
+    flex-direction: column;
+  }
+
+  .site-header {
+    top: 0;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 1.5rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  .site-nav.open {
+    display: block;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .about-grid,
+  .workflow-steps,
+  .component-grid,
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+}

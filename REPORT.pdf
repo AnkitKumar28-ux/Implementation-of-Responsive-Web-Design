@@ -1,0 +1,256 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R 10 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 2610 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+50 750 Td
+(Project Report: Wireframe to Responsive Static Web Page) Tj T*
+() Tj T*
+(Project Title: NovaFlow - Wireframe-to-Code Implementation) Tj T*
+(Deliverables: index.html, styles.css, REPORT.md) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(1. Executive Summary & Wireframe Analysis) Tj T*
+() Tj T*
+(The objective of this task was to translate a standard multi-section web wireframe) Tj T*
+(concept into a pixel-perfect, accessible, and fully responsive static web page using) Tj T*
+(semantic HTML5 and modern CSS3.) Tj T*
+() Tj T*
+(Key Wireframe Regions Identified) Tj T*
+(Before writing code, the wireframe layout was decomposed into eight distinct) Tj T*
+(structural zones:) Tj T*
+(1. Top Inspector & Utility Bar: A compact status bar providing a live Wireframe) Tj T*
+(Blueprint Toggle so evaluators can inspect the underlying wireframe boxes and) Tj T*
+(semantic HTML tags in real time.) Tj T*
+(2. Sticky Header & Primary Navigation \(<header>, <nav>\): Brand identity on the left,) Tj T*
+(horizontal navigation links in the center, and primary action buttons on the right) Tj T*
+(\(collapsing into a touch-friendly drawer on mobile\).) Tj T*
+(3. Split Hero Section \(<section.hero-section>\): Asymmetric 2-column layout pairing) Tj T*
+(headline typography, call-to-action buttons, and social proof with an interactive) Tj T*
+(CSS-built UI wireframe preview card.) Tj T*
+(4. Key Metrics Strip \(<section.metrics-strip>\): High-contrast 4-column statistical) Tj T*
+(banner bridging the hero and feature sections.) Tj T*
+(5. Core Features Grid \(<section.features-section>\): A 3-2 symmetric card grid using) Tj T*
+(<article> containers for modular feature presentation.) Tj T*
+(6. Asymmetric Content + Sidebar Workspace \(<section.workspace-section>\): A classic) Tj T*
+(2:1 wireframe split containing primary <article> case studies on the left and a) Tj T*
+(sticky <aside> specification widget panel on the right.) Tj T*
+(7. Pricing Comparison & Testimonials \(<section.pricing-section>,) Tj T*
+(<section.testimonials-section>\): A 3-column height-equalized pricing table and a) Tj T*
+(2-column <blockquote> review grid, followed by a newsletter Call-to-Action \(<form>\).) Tj T*
+(8. Multi-Column Site Footer \(<footer>\): A 4-column sitemap and copyright bar with a) Tj T*
+(quick "Back to top" anchor.) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(2. Semantic HTML5 Decisions) Tj T*
+() Tj T*
+(To avoid "div soup" and ensure screen-reader compatibility and SEO clarity, every) Tj T*
+(structural box in the wireframe was mapped to its most accurate HTML5 landmark) Tj T*
+(element:) Tj T*
+() Tj T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 2765 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+50 750 Td
+(Wireframe Element  Semantic Tag Used  Rationale & Accessibility Benefit) Tj T*
+(:---  :---  :---) Tj T*
+(Page Header  <header>  Identifies the introductory banner and sticky top bar.) Tj T*
+(Main Menu  <nav aria-label="Primary Navigation">  Provides direct landmark navigation) Tj T*
+(for assistive technologies.) Tj T*
+(Primary Page Content  <main id="main-content">  Paired with a .skip-link \(Skip to) Tj T*
+(main content\) for keyboard-only users.) Tj T*
+(Thematic Groupings  <section aria-labelledby="...">  Groups related content blocks) Tj T*
+(and links each region to its <h2> heading.) Tj T*
+(Independent Cards  <article>  Used for feature cards, workspace case studies, and) Tj T*
+(pricing tiers.) Tj T*
+(Contextual Sidebar  <aside>  Houses supplementary design tokens and interactive tips) Tj T*
+(alongside the main workspace feed.) Tj T*
+(Customer Quotes  <blockquote> + <cite>  Properly attributes mentor testimonials) Tj T*
+(semantically.) Tj T*
+(Sitemap & Legal  <footer>  Closes the document hierarchy with structured navigation) Tj T*
+(lists.) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(3. CSS Architecture & Layout Strategies) Tj T*
+() Tj T*
+(The stylesheet \(styles.css\) is organized into 13 modular sections using BEM-inspired) Tj T*
+(naming conventions \(.block__element--modifier\) and centralized CSS Custom Properties) Tj T*
+(\(:root Design Tokens\).) Tj T*
+() Tj T*
+(3.1 When to Use CSS Grid vs. Flexbox) Tj T*
+(A deliberate dual-layout strategy was employed across the page:) Tj T*
+(- CSS Grid \(2D Macro Layouts\): Used where control over both rows and columns was) Tj T*
+(required simultaneously:) Tj T*
+(- .hero-grid: grid-template-columns: 1.1fr 0.9fr for proportional desktop balance.) Tj T*
+(- .features-grid & .pricing-grid: repeat\(3, 1fr\) for strict equal-width column) Tj T*
+(tracks.) Tj T*
+(- .workspace-layout: grid-template-columns: 2fr 1fr to achieve the classic 66% / 33%) Tj T*
+(main-content-to-sidebar wireframe ratio.) Tj T*
+(- Flexbox \(1D Micro Components\): Used for linear distribution and internal alignment:) Tj T*
+(- .header-container & .site-nav: Horizontal alignment with justify-content:) Tj T*
+(space-between.) Tj T*
+(- .feature-card & .pricing-card: flex-direction: column with flex: 1 on the body list) Tj T*
+(so that footer links and CTA buttons remain pinned to the exact same bottom baseline) Tj T*
+(across cards with varying text lengths.) Tj T*
+() Tj T*
+(3.2 Design System Tokens & 8pt Spatial Grid) Tj T*
+(All colors, spacing values, shadows, and border radii are defined in :root:) Tj T*
+(- Color Palette: High-contrast Slate ink \(0F172A\) on a soft cool canvas \(F8FAFC\),) Tj T*
+(paired with Primary Indigo \(4F46E5\) and Sky Accent \(0EA5E9\), exceeding WCAG AA) Tj T*
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 2724 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+50 750 Td
+(contrast requirements.) Tj T*
+(- Fluid Typography: Section and hero titles use clamp\(min, preferred, max\) \(e.g.,) Tj T*
+(clamp\(2.15rem, 4.2vw, 3.35rem\)\) so headings scale smoothly across viewports without) Tj T*
+(abrupt font-size jumps.) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(4. Responsiveness & Media Query Strategy) Tj T*
+() Tj T*
+(Rather than designing for fixed device models, breakpoints were chosen based on where) Tj T*
+(the layout naturally needed to reflow:) Tj T*
+() Tj T*
+(1. Desktop Default \(> 1024px\): Full 1200px container, 3-column feature/pricing grids,) Tj T*
+(4-column metrics strip, and 2:1 asymmetric workspace with a position: sticky sidebar.) Tj T*
+(2. Tablet Landscape \(@media \(max-width: 1024px\)\):) Tj T*
+(- The 2-column Hero stacks vertically and centers its text and CTAs.) Tj T*
+(- 3-column grids \(.features-grid, .pricing-grid\) reflow into 2 columns.) Tj T*
+(- The <aside> sidebar unsticks and transitions into a 2-column side-by-side widget) Tj T*
+(row below the main articles.) Tj T*
+(3. Tablet Portrait & Large Mobile \(@media \(max-width: 768px\)\):) Tj T*
+(- Pure-CSS Mobile Navigation: The horizontal menu converts into a collapsible) Tj T*
+(hamburger drawer using the :checked sibling selector \(.nav-toggle:checked ~) Tj T*
+(.site-nav\).) Tj T*
+(- Feature, pricing, and testimonial grids collapse to a single readable column \(1fr\).) Tj T*
+(- Metrics strip transitions from 4 columns to a 2-2 grid.) Tj T*
+(4. Small Mobile Handsets \(@media \(max-width: 480px\)\):) Tj T*
+(- CTA button groups stack vertically at width: 100% for comfortable thumb tapping.) Tj T*
+(- Data tables wrap inside .breakpoint-table-wrapper \(overflow-x: auto\) to prevent) Tj T*
+(horizontal page overflow.) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(5. Challenges Encountered & Creative Solutions) Tj T*
+() Tj T*
+(Challenge 1: Equalizing Card Heights with Uneven Content) Tj T*
+(- Problem: In the 3-column Features and Pricing sections, cards had different numbers) Tj T*
+(of bullet points and text lengths, causing the bottom CTA buttons to look staggered) Tj T*
+(and misaligned compared to the wireframe.) Tj T*
+(- Solution: Combined CSS Grid on the parent container \(align-items: stretch\) with) Tj T*
+(Flexbox on each child card \(display: flex; flex-direction: column\). Setting flex: 1) Tj T*
+(on the description/feature-list element forced it to absorb all remaining vertical) Tj T*
+(space, locking every card's CTA button to the bottom border.) Tj T*
+() Tj T*
+(Challenge 2: Building a Responsive Mobile Menu & Wireframe Inspector Without Heavy) Tj T*
+(JavaScript) Tj T*
+(- Problem: Static HTML/CSS tasks should not rely on external JS frameworks for basic) Tj T*
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 1825 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+50 750 Td
+(UI interactions like opening a mobile menu or visualizing wireframe boundaries.) Tj T*
+(- Solution:) Tj T*
+(1. Implemented a CSS Checkbox Hack \(nav-toggle:checked ~ .site-nav\) with animated) Tj T*
+(<label> spans that morph into an "X" icon when active.) Tj T*
+(2. Built a Wireframe Blueprint Mode \(body:has\(wireframe-switch:checked\)\) that) Tj T*
+(overlays a 16px architectural dot grid, replaces colored surfaces with dashed) Tj T*
+(structural outlines, and renders data-semantic attribute badges \(<header>, <nav>,) Tj T*
+(<article>, <aside>\) in the top-right corner of every landmark element.) Tj T*
+() Tj T*
+(Challenge 3: Preventing Horizontal Scroll on Narrow Screens \(320px\)) Tj T*
+(- Problem: Complex inner components-such as the Hero UI Mockup card and the) Tj T*
+(Breakpoint Specification <table>-initially caused horizontal overflow on 320px) Tj T*
+(viewports.) Tj T*
+(- Solution: Wrapped the specification table in an overflow-x: auto container and) Tj T*
+(added a dedicated @media \(max-width: 480px\) rule that collapses .mockup-top-row from) Tj T*
+(repeat\(2, 1fr\) to 1fr.) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(6. How to Run Locally on Localhost) Tj T*
+() Tj T*
+(You can serve and inspect the project on localhost:8000 using the included) Tj T*
+(zero-dependency Node.js server \(server.js\) or PowerShell server \(server.ps1\):) Tj T*
+() Tj T*
+(powershell) Tj T*
+(Navigate to the project folder) Tj T*
+(cd C:\\Users\\pc\\.gemini\\antigravity\\scratch\\wireframe-to-webpage) Tj T*
+() Tj T*
+(Option 1: Start local HTTP server using Node.js \(Port 8000\)) Tj T*
+(node server.js) Tj T*
+() Tj T*
+(Option 2: Start local HTTP server using PowerShell \(Port 8000\)) Tj T*
+(.\\server.ps1) Tj T*
+() Tj T*
+() Tj T*
+(Then open http://localhost:8000 in your browser.) Tj T*
+() Tj T*
+ET
+endstream
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000134 00000 n 
+0000000204 00000 n 
+0000000330 00000 n 
+0000002992 00000 n 
+0000003118 00000 n 
+0000005935 00000 n 
+0000006061 00000 n 
+0000008837 00000 n 
+0000008965 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+10843
+%%EOF

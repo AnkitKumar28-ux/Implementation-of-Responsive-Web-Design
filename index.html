@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transforming Wireframes into Static Web Pages | Internship Project</title>
+  <meta
+    name="description"
+    content="An interactive frontend project demonstrating the transformation of wireframe designs into responsive, semantic, and visually appealing static web pages using HTML, CSS, and JavaScript."
+  />
+  <!-- Google Fonts: Inter for UI, JetBrains Mono for Wireframe & Code Annotations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="final-mode">
+  <!-- Interactive Control Bar: Toggle between Wireframe, Inspector, and Final Webpage -->
+  <div class="mode-toolbar" role="region" aria-label="View Mode Switcher">
+    <div class="container toolbar-inner">
+      <div class="toolbar-brand">
+        <span class="status-dot"></span>
+        <span class="toolbar-title">Interactive Design-to-Code Mode:</span>
+      </div>
+
+      <div class="mode-switch-group" role="group" aria-label="Select display mode">
+        <button
+          type="button"
+          class="mode-btn"
+          data-mode="wireframe"
+          aria-pressed="false"
+        >
+          <span class="mode-icon">[#]</span>
+          1. Wireframe Blueprint
+        </button>
+        <button
+          type="button"
+          class="mode-btn"
+          data-mode="inspect"
+          aria-pressed="false"
+        >
+          <span class="mode-icon">&lt;/&gt;</span>
+          2. Layout &amp; Spacing Inspector
+        </button>
+        <button
+          type="button"
+          class="mode-btn active"
+          data-mode="final"
+          aria-pressed="true"
+        >
+          <span class="mode-icon">&#10024;</span>
+          3. Final Static Webpage
+        </button>
+      </div>
+
+      <div class="toolbar-status" id="modeStatusText">
+        Viewing: <strong>Final Styled Webpage</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Semantic Header & Navigation -->
+  <header class="site-header" data-tag="&lt;header&gt;" data-spec="height: 72px | sticky">
+    <div class="container nav-container">
+      <a href="#hero" class="logo" aria-label="WireCraft Home">
+        <span class="logo-box">WC</span>
+        <span class="logo-text">Wire<span>Craft</span></span>
+      </a>
+
+      <button
+        class="mobile-menu-toggle"
+        id="mobileMenuBtn"
+        aria-label="Toggle Navigation"
+        aria-expanded="false"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" data-tag="&lt;nav&gt;">
+        <ul class="nav-list">
+          <li><a href="#about" class="nav-link">Project Overview</a></li>
+          <li><a href="#workflow" class="nav-link">Workflow</a></li>
+          <li><a href="#components" class="nav-link">UI Components</a></li>
+          <li><a href="#comparison" class="nav-link">Wireframe vs Final</a></li>
+          <li><a href="#contact" class="nav-link nav-cta">Live Demo Info</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main data-tag="&lt;main&gt;">
+    <!-- Hero Section -->
+    <section
+      id="hero"
+      class="hero-section section-padding"
+      data-tag="&lt;section#hero&gt;"
+      data-spec="12-Col Grid | gap: 48px | padding: 80px 0"
+    >
+      <div class="container hero-grid">
+        <div class="hero-content" data-tag="&lt;div.hero-content&gt;">
+          <div class="badge" data-spec="border-radius: 999px">
+            Frontend Development Internship Project
+          </div>
+          <h1 class="hero-title" data-spec="font-size: clamp(2.25rem, 4vw, 3.5rem)">
+            Transforming Wireframes into <span class="text-gradient">Static Web Pages</span>
+          </h1>
+          <p class="hero-subtitle" data-spec="max-width: 60ch | line-height: 1.7">
+            Converting low-fidelity wireframe blueprints into functional, responsive,
+            and visually appealing static web pages using semantic
+            <strong>HTML5</strong>, modern <strong>CSS3</strong>, and interactive
+            <strong>JavaScript</strong>—managed with <strong>GitHub</strong> and
+            deployed on <strong>Vercel</strong>.
+          </p>
+
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary" id="quickToggleBtn">
+              Switch to Wireframe View
+            </button>
+            <a href="#workflow" class="btn btn-secondary">
+              Explore Workflow
+            </a>
+          </div>
+
+          <div class="hero-metrics" data-spec="display: grid | 3 columns">
+            <div class="metric-item">
+              <span class="metric-value">100%</span>
+              <span class="metric-label">Semantic HTML5</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-value">3 Modes</span>
+              <span class="metric-label">Interactive Comparison</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-value">Vercel</span>
+              <span class="metric-label">Cloud Deployment</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Wireframe-to-UI Card Preview -->
+        <div class="hero-visual" data-tag="&lt;aside.hero-visual&gt;">
+          <div class="preview-window" data-spec="aspect-ratio: 4/3 | elevation: lg">
+            <div class="window-header">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+              <span class="window-url">wireframe-to-webpage.vercel.app</span>
+            </div>
+
+            <div class="window-body">
+              <div class="mini-layout-header">
+                <div class="mini-logo">Logo</div>
+                <div class="mini-nav-pills">
+                  <span>Nav 1</span>
+                  <span>Nav 2</span>
+                  <span>CTA</span>
+                </div>
+              </div>
+
+              <div class="mini-hero-box">
+                <div class="mini-image-placeholder">
+                  <span class="wf-only-label">IMG PLACEHOLDER (16:9)</span>
+                  <div class="styled-graphic">
+                    <div class="graphic-circle"></div>
+                    <div class="graphic-bars">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mini-text-lines">
+                  <div class="line line-lg">Heading Typography</div>
+                  <div class="line line-md">Spacing &amp; Alignment Grid</div>
+                  <div class="line line-sm">Responsive Breakpoints</div>
+                </div>
+              </div>
+
+              <div class="mini-card-grid">
+                <div class="mini-card">
+                  <strong>Structure</strong>
+                  <span>Semantic Tags</span>
+                </div>
+                <div class="mini-card">
+                  <strong>Styling</strong>
+                  <span>Flex &amp; Grid</span>
+                </div>
+                <div class="mini-card">
+                  <strong>Deploy</strong>
+                  <span>GitHub + Vercel</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Overview & Internship Summary Section -->
+    <section
+      id="about"
+      class="about-section section-padding bg-alt"
+      data-tag="&lt;section#about&gt;"
+      data-spec="padding: 80px 0 | background: var(--bg-alt)"
+    >
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Project Objective &amp; Summary</span>
+          <h2 class="section-title">From Blueprint Concept to Production Interface</h2>
+          <p class="section-description">
+            The primary objective of this project was to analyze provided wireframe designs
+            and translate their structure, layout, content placement, spacing, typography,
+            and color hierarchy into clean, responsive web pages.
+          </p>
+        </div>
+
+        <div class="about-grid" data-spec="grid-template-columns: repeat(3, 1fr) | gap: 24px">
+          <article class="feature-card" data-tag="&lt;article.feature-card&gt;">
+            <div class="card-icon" aria-hidden="true">01</div>
+            <h3>Structure &amp; Semantic HTML</h3>
+            <p>
+              Organized the webpage structure using meaningful HTML5 elements
+              (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+              <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>,
+              <code>&lt;article&gt;</code>, and <code>&lt;footer&gt;</code>) to ensure
+              accessibility, maintainability, and clear document hierarchy.
+            </p>
+          </article>
+
+          <article class="feature-card" data-tag="&lt;article.feature-card&gt;">
+            <div class="card-icon" aria-hidden="true">02</div>
+            <h3>CSS Styling &amp; Responsiveness</h3>
+            <p>
+              Implemented CSS Flexbox and Grid for accurate positioning and alignment.
+              Applied consistent spacing tokens, typography scales, color palettes,
+              and media queries so the layout adapts smoothly across desktop, tablet,
+              and mobile screens.
+            </p>
+          </article>
+
+          <article class="feature-card" data-tag="&lt;article.feature-card&gt;">
+            <div class="card-icon" aria-hidden="true">03</div>
+            <h3>Version Control &amp; Deployment</h3>
+            <p>
+              Maintained and shared project source code using <strong>GitHub</strong> for
+              version control, and deployed the static web application on
+              <strong>Vercel</strong> for instant online accessibility and continuous
+              deployment.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- End-to-End Workflow Section -->
+    <section
+      id="workflow"
+      class="workflow-section section-padding"
+      data-tag="&lt;section#workflow&gt;"
+      data-spec="4-Step Pipeline | gap: 24px"
+    >
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Development Lifecycle</span>
+          <h2 class="section-title">Complete Design-to-Deployment Workflow</h2>
+          <p class="section-description">
+            How each wireframe specification was systematically translated, debugged,
+            and deployed online.
+          </p>
+        </div>
+
+        <div class="workflow-steps">
+          <div class="step-card" data-tag="&lt;div.step-card&gt;">
+            <div class="step-number">Step 01</div>
+            <h3 class="step-title">Wireframe Analysis</h3>
+            <p class="step-text">
+              Examined wireframe layouts to identify container widths, column grids,
+              visual hierarchy, padding/margin rules, and component placement.
+            </p>
+            <ul class="step-tags">
+              <li>Layout Hierarchy</li>
+              <li>Spacing System</li>
+              <li>Typography Scale</li>
+            </ul>
+          </div>
+
+          <div class="step-card" data-tag="&lt;div.step-card&gt;">
+            <div class="step-number">Step 02</div>
+            <h3 class="step-title">Frontend Implementation</h3>
+            <p class="step-text">
+              Built the structural skeleton in HTML5, styled visual fidelity with CSS3
+              variables and Flexbox/Grid, and added interactive behaviors with JavaScript.
+            </p>
+            <ul class="step-tags">
+              <li>HTML5</li>
+              <li>CSS3 Grid/Flex</li>
+              <li>JavaScript ES6</li>
+            </ul>
+          </div>
+
+          <div class="step-card" data-tag="&lt;div.step-card&gt;">
+            <div class="step-number">Step 03</div>
+            <h3 class="step-title">Visual Comparison &amp; Debugging</h3>
+            <p class="step-text">
+              Compared the implemented webpage side-by-side with the original wireframe,
+              refining alignment, responsive breakpoints, and cross-browser consistency.
+            </p>
+            <ul class="step-tags">
+              <li>UI Debugging</li>
+              <li>Responsive Testing</li>
+              <li>Pixel Refinement</li>
+            </ul>
+          </div>
+
+          <div class="step-card" data-tag="&lt;div.step-card&gt;">
+            <div class="step-number">Step 04</div>
+            <h3 class="step-title">GitHub &amp; Vercel Deployment</h3>
+            <p class="step-text">
+              Committed structured code to a GitHub repository and connected it to
+              Vercel for automated builds and live production hosting.
+            </p>
+            <ul class="step-tags">
+              <li>Git &amp; GitHub</li>
+              <li>Vercel Hosting</li>
+              <li>Live Production</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive UI Components Showcase (Filterable) -->
+    <section
+      id="components"
+      class="components-section section-padding bg-alt"
+      data-tag="&lt;section#components&gt;"
+      data-spec="Filterable Grid | JS Interactive"
+    >
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Translated UI Modules</span>
+          <h2 class="section-title">Wireframe Elements Converted to Web Components</h2>
+          <p class="section-description">
+            Filter the components below and toggle the top toolbar between
+            <strong>Wireframe Blueprint</strong> and <strong>Final Static Webpage</strong>
+            to inspect how each UI element was constructed.
+          </p>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="filter-bar" role="tablist" aria-label="Filter UI components">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+            All Elements (6)
+          </button>
+          <button class="filter-btn" data-filter="layout" role="tab" aria-selected="false">
+            Layout &amp; Grid
+          </button>
+          <button class="filter-btn" data-filter="typography" role="tab" aria-selected="false">
+            Typography &amp; Content
+          </button>
+          <button class="filter-btn" data-filter="interactive" role="tab" aria-selected="false">
+            Interactive UI
+          </button>
+        </div>
+
+        <!-- Component Cards Grid -->
+        <div class="component-grid" id="componentGrid">
+          <article class="comp-card" data-category="layout" data-tag="&lt;article&gt;">
+            <div class="comp-preview">
+              <div class="mock-grid-demo">
+                <span>Col 1</span>
+                <span>Col 2</span>
+                <span>Col 3</span>
+              </div>
+            </div>
+            <div class="comp-body">
+              <span class="comp-badge">Layout &amp; Grid</span>
+              <h3>12-Column Responsive Grid</h3>
+              <p>
+                Translates static wireframe columns into flexible CSS Grid layouts that
+                collapse cleanly from 3 columns on desktop to 1 column on mobile.
+              </p>
+              <code class="comp-code">grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))</code>
+            </div>
+          </article>
+
+          <article class="comp-card" data-category="typography" data-tag="&lt;article&gt;">
+            <div class="comp-preview">
+              <div class="mock-type-demo">
+                <span class="t-h1">H1 Display Heading</span>
+                <span class="t-body">Body copy with 1.6 line-height and balanced measure.</span>
+              </div>
+            </div>
+            <div class="comp-body">
+              <span class="comp-badge">Typography &amp; Content</span>
+              <h3>Visual Type Hierarchy</h3>
+              <p>
+                Converts wireframe text bars into clear typographic scales using fluid
+                <code>clamp()</code> sizing, font weights, and accessible contrast ratios.
+              </p>
+              <code class="comp-code">font-size: clamp(1.75rem, 3vw, 2.5rem)</code>
+            </div>
+          </article>
+
+          <article class="comp-card" data-category="interactive" data-tag="&lt;article&gt;">
+            <div class="comp-preview">
+              <div class="mock-nav-demo">
+                <span class="mock-brand">Brand</span>
+                <span class="mock-links">Links</span>
+                <span class="mock-btn">Action</span>
+              </div>
+            </div>
+            <div class="comp-body">
+              <span class="comp-badge">Interactive UI</span>
+              <h3>Sticky Navigation &amp; Mobile Drawer</h3>
+              <p>
+                Transforms the top navigation box from the wireframe into a sticky
+                header with smooth-scroll anchor links and a mobile hamburger menu.
+              </p>
+              <code class="comp-code">display: flex; justify-content: space-between;</code>
+            </div>
+          </article>
+
+          <article class="comp-card" data-category="layout" data-tag="&lt;article&gt;">
+            <div class="comp-preview">
+              <div class="mock-spacing-demo">
+                <div class="mock-outer-box">
+                  padding: 24px
+                  <div class="mock-inner-box">Content Area (gap: 16px)</div>
+                </div>
+              </div>
+            </div>
+            <div class="comp-body">
+              <span class="comp-badge">Layout &amp; Grid</span>
+              <h3>Consistent Spacing &amp; Box Model</h3>
+              <p>
+                Maps wireframe whitespace annotations into reusable CSS custom
+                properties for margin, padding, and border-radius consistency.
+              </p>
+              <code class="comp-code">padding: var(--space-lg); gap: var(--space-md);</code>
+            </div>
+          </article>
+
+          <article class="comp-card" data-category="typography" data-tag="&lt;article&gt;">
+            <div class="comp-preview">
+              <div class="mock-palette-demo">
+                <span class="swatch s-primary" title="Primary #2563EB"></span>
+                <span class="swatch s-accent" title="Accent #4F46E5"></span>
+                <span class="swatch s-dark" title="Surface #0F172A"></span>
+                <span class="swatch s-light" title="Background #F8FAFC"></span>
+              </div>
+            </div>
+            <div class="comp-body">
+              <span class="comp-badge">Typography &amp; Content</span>
+              <h3>Color System &amp; Surface Elevation</h3>
+              <p>
+                Replaces grayscale wireframe shading with a cohesive semantic color
+                palette for primary actions, surfaces, borders, and status indicators.
+              </p>
+              <code class="comp-code">--color-primary: #2563eb; --shadow-md: 0 10px 25px...</code>
+            </div>
+          </article>
+
+          <article class="comp-card" data-category="interactive" data-tag="&lt;article&gt;">
+            <div class="comp-preview">
+              <div class="mock-cta-demo">
+                <button type="button" class="demo-Interactive-btn" id="microDemoBtn">
+                  Click to Test Interaction (0)
+                </button>
+              </div>
+            </div>
+            <div class="comp-body">
+              <span class="comp-badge">Interactive UI</span>
+              <h3>JavaScript DOM &amp; Event Handling</h3>
+              <p>
+                Enhances static layouts with dynamic state changes, filter tabs,
+                interactive mode switching, and client-side form validation.
+              </p>
+              <code class="comp-code">element.addEventListener('click', updateUIState)</code>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Side-by-Side Specification Comparison Section -->
+    <section
+      id="comparison"
+      class="comparison-section section-padding"
+      data-tag="&lt;section#comparison&gt;"
+      data-spec="Comparison Table &amp; Fidelity Slider"
+    >
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Quality Assurance &amp; Verification</span>
+          <h2 class="section-title">Comparing Wireframe Specs vs. Implemented Webpage</h2>
+          <p class="section-description">
+            Throughout the internship, each webpage was carefully compared against the
+            original wireframe to refine visual accuracy, responsiveness, and code quality.
+          </p>
+        </div>
+
+        <div class="table-wrapper" data-tag="&lt;div.table-wrapper&gt;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Design Aspect</th>
+                <th>Original Wireframe Blueprint</th>
+                <th>Implemented Static Web Page</th>
+                <th>Technology Used</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Page Structure</strong></td>
+                <td>Annotated rectangular boxes &amp; section dividers</td>
+                <td>Semantic landmarks (<code>header</code>, <code>main</code>, <code>section</code>, <code>footer</code>)</td>
+                <td><span class="tech-pill">HTML5</span></td>
+              </tr>
+              <tr>
+                <td><strong>Alignment &amp; Layout</strong></td>
+                <td>Static 12-column guide bars</td>
+                <td>Fluid Flexbox &amp; CSS Grid with responsive breakpoints</td>
+                <td><span class="tech-pill">CSS3 Grid / Flex</span></td>
+              </tr>
+              <tr>
+                <td><strong>Typography &amp; Visuals</strong></td>
+                <td>Monospace labels &amp; crossed-out placeholder boxes</td>
+                <td>Scaled Inter font hierarchy, brand colors, &amp; SVG/CSS visuals</td>
+                <td><span class="tech-pill">CSS Variables</span></td>
+              </tr>
+              <tr>
+                <td><strong>User Interaction</strong></td>
+                <td>Static annotations describing click behavior</td>
+                <td>Interactive mode toggles, category filters, &amp; form validation</td>
+                <td><span class="tech-pill">JavaScript (ES6)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Hosting &amp; Delivery</strong></td>
+                <td>Local design file / PDF mockup</td>
+                <td>Version-controlled repository &amp; live global CDN URL</td>
+                <td><span class="tech-pill">GitHub + Vercel</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Review / Contact Section -->
+    <section
+      id="contact"
+      class="contact-section section-padding bg-alt"
+      data-tag="&lt;section#contact&gt;"
+      data-spec="2-Column Split | Form Validation"
+    >
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <span class="section-eyebrow">Key Learning Outcomes</span>
+          <h2 class="section-title">Skills Strengthened During the Internship</h2>
+          <p>
+            This project provided hands-on experience in converting design concepts into
+            working web pages and strengthened core frontend engineering and
+            problem-solving skills:
+          </p>
+
+          <ul class="learning-list">
+            <li>
+              <strong>Frontend Development:</strong> Writing clean, modular HTML, CSS, and
+              JavaScript with separation of concerns.
+            </li>
+            <li>
+              <strong>Responsive Web Design:</strong> Ensuring layouts adapt seamlessly
+              across mobile, tablet, and desktop viewports.
+            </li>
+            <li>
+              <strong>UI Debugging:</strong> Inspecting computed styles, box models, and
+              layout shifts to match wireframe specifications.
+            </li>
+            <li>
+              <strong>GitHub &amp; Vercel Workflow:</strong> Managing commits, branches, and
+              continuous production deployments.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Interactive Feedback Form Demo -->
+        <div class="contact-card" data-tag="&lt;form#reviewForm&gt;">
+          <h3>Test Interactive Form Component</h3>
+          <p class="form-subtext">
+            A functional static-page form demonstrating HTML5 validation and JavaScript
+            feedback handling.
+          </p>
+
+          <form id="feedbackForm" novalidate>
+            <div class="form-group">
+              <label for="reviewerName">Your Name</label>
+              <input
+                type="text"
+                id="reviewerName"
+                name="reviewerName"
+                placeholder="e.g., Alex Morgan"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="reviewAspect">Evaluated Aspect</label>
+              <select id="reviewAspect" name="reviewAspect">
+                <option value="Layout & Structure">Layout &amp; Semantic Structure</option>
+                <option value="Responsive Styling">CSS Styling &amp; Responsiveness</option>
+                <option value="Wireframe Accuracy">Wireframe-to-Webpage Accuracy</option>
+                <option value="Deployment Workflow">GitHub &amp; Vercel Deployment</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="reviewMessage">Observation / Feedback</label>
+              <textarea
+                id="reviewMessage"
+                name="reviewMessage"
+                rows="3"
+                placeholder="Enter notes on layout, spacing, or visual representation..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+              Submit Inspection Note
+            </button>
+
+            <div id="formFeedback" class="form-feedback" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Semantic Footer -->
+  <footer class="site-footer" data-tag="&lt;footer&gt;" data-spec="background: #0f172a | padding: 48px 0">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#hero" class="logo footer-logo">
+          <span class="logo-box">WC</span>
+          <span class="logo-text">Wire<span>Craft</span></span>
+        </a>
+        <p>
+          Internship Project: <strong>“Transforming Wireframes into Static Web Pages”</strong>
+          — Built with Semantic HTML5, CSS3, and JavaScript.
+        </p>
+      </div>
+
+      <div class="footer-meta">
+        <div class="footer-badges">
+          <span class="footer-pill">HTML5</span>
+          <span class="footer-pill">CSS3</span>
+          <span class="footer-pill">JavaScript</span>
+          <span class="footer-pill">GitHub</span>
+          <span class="footer-pill">Vercel</span>
+        </div>
+        <p class="copyright">
+          &copy; <span id="currentYear">2026</span> Transforming Wireframes into Static Web Pages.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
